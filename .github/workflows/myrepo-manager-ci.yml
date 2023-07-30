@@ -44,6 +44,7 @@ jobs:
           pytest
 
   build-docker:
+    needs: build-python
     runs-on: ubuntu-latest
 
     steps:
@@ -58,6 +59,7 @@ jobs:
         run: docker compose build --no-cache
 
   integration-tests:
+    needs: build-docker
     runs-on: ubuntu-latest
 
     steps:
