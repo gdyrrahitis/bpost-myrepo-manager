@@ -1,0 +1,3 @@
+[submodule "lib/myrepo"]
+	path = lib/myrepo
+	url = git@github.com:gdyrrahitis/bpost-myrepo.git
