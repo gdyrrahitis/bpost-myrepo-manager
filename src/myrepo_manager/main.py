@@ -19,6 +19,7 @@ def main(cli_args: List[str] = None) -> int:
     except Exception as e:
         logger.exception(e)
         return 1
+    return 0
 
 
 if __name__ == "__main__":

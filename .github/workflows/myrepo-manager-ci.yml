@@ -56,3 +56,15 @@ jobs:
         run: docker build . --no-cache --file Dockerfile --tag my-image-name:$(date +%s)
       - name: Build Docker Compose
         run: docker compose build --no-cache
+
+  integration-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: true
+      - name: Run integration tests
+        run: ./bin/run_integ.sh
