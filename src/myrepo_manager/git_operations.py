@@ -8,11 +8,14 @@ from myrepo_manager.models import MyRepoManagerInput
 
 logger = get_logger(__name__)
 
+
 class MyRepoGitOperationsManager:
     def __init__(self):
         self.current_working_directory = os.getcwd()
         self.temp_directory = os.path.join(self.current_working_directory, "var")
-        self.local_repo_workspace = os.path.join(self.temp_directory, str(uuid.uuid4().hex), self.repo_name)
+        self.local_repo_workspace = os.path.join(
+            self.temp_directory, str(uuid.uuid4().hex), self.repo_name
+        )
 
     @property
     def repo_url(self):
@@ -45,7 +48,9 @@ class MyRepoGitOperationsManager:
     def append_content_to_file(self, input: MyRepoManagerInput) -> None:
         logger.info(f"Starting process to update file {input.file}")
         with cd(self.local_repo_workspace):
-            logger.debug(f"Changed directory to {self.local_repo_workspace} - pwd: {os.getcwd()}")
+            logger.debug(
+                f"Changed directory to {self.local_repo_workspace} - pwd: {os.getcwd()}"
+            )
             with open(input.file, mode="a") as f:
                 f.write(f"{input.user}: {input.content}\n")
                 logger.debug(f"Wrote to file {f.name} successfully")
@@ -57,7 +62,7 @@ class MyRepoGitOperationsManager:
                 logger.info(f"\n\n****\n{diff}\n\n****")
                 self.repo.git.add(update_file)
                 file_diffs.append({"diff": diff, "file": update_file})
-            
+
             if input.diff_only:
                 logger.debug("Dry run operation, returning diff")
                 # print for stdout
@@ -69,4 +74,6 @@ class MyRepoGitOperationsManager:
                 self.repo.git.push()
                 # print for stdout
                 send_to_stdout(json.dumps({"commit_id": self.repo.head.commit.hexsha}))
-        logger.debug(f"Changed back to working dir {self.current_working_directory} - pwd: {os.getcwd()}")
+        logger.debug(
+            f"Changed back to working dir {self.current_working_directory} - pwd: {os.getcwd()}"
+        )
