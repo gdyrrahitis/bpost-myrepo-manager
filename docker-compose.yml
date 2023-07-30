@@ -1,0 +1,23 @@
+services:
+  myrepo_manager:
+    build:
+      context: .
+      args:
+        CALLER: ${USER:-$USERNAME}
+    restart: on-failure:5 
+    environment:
+      - GIT_SERVER=git_server
+      - GIT_SERVER_PORT=22
+      - GIT_USER_EMAIL=test@email.com
+      - GIT_USER=George
+    volumes:
+      - ~/.ssh:/root/.ssh
+    depends_on:
+      - git_server
+  git_server:
+    image: "jkarlos/git-server-docker:latest"
+    ports:
+      - "2222:22"
+    volumes:
+      - ${HOME}/.ssh:/git-server/keys
+      - ${PWD}/_dev/git-server/repos:/git-server/repos

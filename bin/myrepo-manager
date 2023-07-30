@@ -1,0 +1,4 @@
+#!/usr/bin/env python
+
+from myrepo_manager.main import main
+main()
