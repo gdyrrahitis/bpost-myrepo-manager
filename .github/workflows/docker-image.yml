@@ -3,12 +3,12 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - .gitignore
+      - README.md
+      - LICENSE
   pull_request:
     branches: [ "main" ]
-  paths-ignore:
-    - .gitignore
-    - README.md
-    - LICENSE
 
 jobs:
   build:
