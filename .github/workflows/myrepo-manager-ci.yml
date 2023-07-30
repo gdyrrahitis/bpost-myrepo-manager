@@ -69,5 +69,5 @@ jobs:
       - name: Run integration tests
         working-directory: ${{ github.workspace }}/bin
         run: |
-          - chmod +x ./run_integ.sh
-          - ./run_integ.sh
+          chmod +x ./run_integ.sh
+          ./run_integ.sh
