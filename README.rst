@@ -1,5 +1,9 @@
 MyRepo Manager
 --------------
-Run bin script
->> pip install .
->> myrepo-manager
+Run app locally
+
+```
+$ pip install .
+$ ./bin/setup.sh
+$ ./bin/run_local.sh 
+```
