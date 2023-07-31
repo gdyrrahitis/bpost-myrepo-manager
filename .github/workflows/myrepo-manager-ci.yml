@@ -68,11 +68,16 @@ jobs:
         with:
           fetch-depth: 0
           submodules: true
+      - name: Create SSH key
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PUBLIC_KEY }}" > ~/.ssh/id_rsa.pub
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
       - name: Run integration tests
         working-directory: ${{ github.workspace }}
         run: |
           chmod +x ./bin/run_integ.sh
           chmod +x ./bin/setup_myrepo.sh
-          ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
           ./bin/setup_myrepo.sh
           ./bin/run_integ.sh
