@@ -72,4 +72,6 @@ jobs:
         working-directory: ${{ github.workspace }}
         run: |
           chmod +x ./bin/run_integ.sh
+          chmod +x ./bin/setup_myrepo.sh
+          ./bin/setup_myrepo.sh
           ./bin/run_integ.sh
