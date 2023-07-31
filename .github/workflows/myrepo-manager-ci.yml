@@ -73,5 +73,6 @@ jobs:
         run: |
           chmod +x ./bin/run_integ.sh
           chmod +x ./bin/setup_myrepo.sh
+          ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""
           ./bin/setup_myrepo.sh
           ./bin/run_integ.sh
