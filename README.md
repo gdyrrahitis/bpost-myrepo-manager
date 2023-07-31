@@ -35,6 +35,16 @@ $ ./bin/run_local.sh
 ### Integration test local run
 
 ```
-$ ./bin/setup_myrepo.sh
 $ ./bin/run_integ.sh 
+```
+
+### Other commands
+Run linter
+```
+$ ./bin/lint.sh 
+```
+
+Format code
+```
+$ ./bin/format.sh 
 ```
